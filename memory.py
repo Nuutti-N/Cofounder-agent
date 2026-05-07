@@ -5,11 +5,13 @@ from config import settings
 supabase: Client = create_client(settings.SUPABASE_URL, settings.SUPABASE_KEY)
 
 
-def save_memory(content):
+def save_memory(content: str):
+    """Save a memory to the database."""
     supabase.table("memories").insert({"content": content}).execute()
 
 
-def search_memories(query):
+def search_memories(query: str):
+    """ Search memories relevant to a query."""
     result = supabase.table("memories").select(
         "*").ilike("content", f"%{query}%").execute()
     return result.data
