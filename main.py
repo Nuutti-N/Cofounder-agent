@@ -7,10 +7,9 @@ def loop():
     history = []
     while True:
         message = input("You: ")
-        response = agent(message)
-        history.append({"role": "user", "parts": message})
-        history.append({"role":  "model", "parts": response})
-
+        response = agent(message, history)
+        history.append({"role": "user", "parts": [{"text": message}]})
+        history.append({"role":  "model", "parts": [{"text": response}]})
         print(response)
 
 
