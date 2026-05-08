@@ -21,6 +21,7 @@ def agent(message: str, history: list):
                 Just give examples and give plan what give me to chance to get job.
 
                 Save any task, comment, or what I just tell for your!
+                Always call save_memory automatically when I mentiuon any things — never wait for me to ask.
                 """
             ]
         )
