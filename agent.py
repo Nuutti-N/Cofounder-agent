@@ -6,10 +6,10 @@ from memory import save_memory, search_memories
 client = genai.Client(api_key=settings.GEMINI_API_KEY)
 
 
-def agent(message):
+def agent(message: str, history: list):
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=message,
+        model="gemini-3-flash-preview",
+        contents=history + [{"role": "user", "parts": [{"text": message}]}],
         config=GenerateContentConfig(
             tools=[save_memory, search_memories],
             system_instruction=[
