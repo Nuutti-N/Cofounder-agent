@@ -5,9 +5,10 @@ from config import settings
 supabase: Client = create_client(settings.SUPABASE_URL, settings.SUPABASE_KEY)
 
 
-def save_memory(content: str):
-    """Save a memory to the database."""
-    supabase.table("memories").insert({"content": content}).execute()
+def save_memory(content: str, category: str):
+    """Save a memory to the database and add every to different category."""
+    supabase.table("memories").insert(
+        {"content": content, "category": category}).execute()
 
 
 def search_memories(query: str):
